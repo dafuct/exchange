@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "exchange-rates-frontend"
+    }
+  },
+  "defaultProject": "exchange-rates-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
