@@ -1,4 +1,4 @@
-package com.makarenko.exchangeratesbackend.security.jwt;
+package com.makarenko.exchangeratesbackend.config.security.jwt;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;

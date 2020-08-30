@@ -1,12 +1,15 @@
-package com.makarenko.exchangeratesbackend.security;
+package com.makarenko.exchangeratesbackend.config.security;
 
-import com.makarenko.exchangeratesbackend.security.jwt.AuthEntryPointJwt;
-import com.makarenko.exchangeratesbackend.security.jwt.AuthTokenFilter;
-import com.makarenko.exchangeratesbackend.security.jwt.JwtUtils;
-import com.makarenko.exchangeratesbackend.security.services.UserDetailsServiceImpl;
+import com.makarenko.exchangeratesbackend.config.AppConfiguration;
+import com.makarenko.exchangeratesbackend.config.security.jwt.AuthEntryPointJwt;
+import com.makarenko.exchangeratesbackend.config.security.jwt.AuthTokenFilter;
+import com.makarenko.exchangeratesbackend.config.security.jwt.JwtUtils;
+import com.makarenko.exchangeratesbackend.config.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -21,6 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Import({AppConfiguration.class})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final UserDetailsServiceImpl userDetailsService;

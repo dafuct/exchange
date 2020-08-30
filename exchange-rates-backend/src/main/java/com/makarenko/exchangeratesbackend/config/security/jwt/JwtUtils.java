@@ -1,6 +1,6 @@
-package com.makarenko.exchangeratesbackend.security.jwt;
+package com.makarenko.exchangeratesbackend.config.security.jwt;
 
-import com.makarenko.exchangeratesbackend.security.services.UserDetailsImpl;
+import com.makarenko.exchangeratesbackend.config.security.services.UserDetailsImpl;
 import java.util.Date;
 
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package com.makarenko.exchangeratesbackend.security.services;
+package com.makarenko.exchangeratesbackend.config.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.makarenko.exchangeratesbackend.models.User;
