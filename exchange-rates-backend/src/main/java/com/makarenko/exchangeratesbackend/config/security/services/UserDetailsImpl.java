@@ -1,19 +1,16 @@
 package com.makarenko.exchangeratesbackend.security.services;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.makarenko.exchangeratesbackend.models.User;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @AllArgsConstructor
 @Getter
@@ -70,3 +67,4 @@ public class UserDetailsImpl implements UserDetails {
     return true;
   }
 }
+

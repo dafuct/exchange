@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../_services/user.service';
+import {CurrencyForm} from '../_models/currency-form';
 
 @Component({
   selector: 'app-board-user',
@@ -7,8 +8,8 @@ import {UserService} from '../_services/user.service';
   styleUrls: ['./board-user.component.css']
 })
 export class BoardUserComponent implements OnInit {
-
-  content: string;
+  errorMessage = '';
+  currency: CurrencyForm[];
 
   constructor(private userService: UserService) {
   }
@@ -16,10 +17,10 @@ export class BoardUserComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUserBoard().subscribe(
       data => {
-        this.content = data;
+        this.currency = data;
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        this.errorMessage = err.error.message;
       }
     );
   }

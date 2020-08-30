@@ -1,5 +1,30 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<div class="container" *ngIf="!errorMessage">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Currency</th>
+        <th scope="col">Buy</th>
+        <th scope="col">Sale</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let cur of currency">
+        <td>
+          {{cur.ccy}}
+        </td>
+        <td>
+          {{cur.buy}} {{cur.base_ccy}}
+        </td>
+        <td>
+          {{cur.sale}} {{cur.base_ccy}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
 </div>
+<div class="container">
+  <div class="alert alert-warning" *ngIf="errorMessage">
+    Signin failed!<br/>{{ errorMessage }}
+  </div>
+</div>
+
