@@ -1,0 +1,2 @@
+DELETE FROM roles WHERE name='ROLE_USER';
+INSERT INTO roles(name) VALUES ('ROLE_USER') ;

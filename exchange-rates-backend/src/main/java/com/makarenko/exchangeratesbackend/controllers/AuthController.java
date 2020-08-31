@@ -1,5 +1,6 @@
 package com.makarenko.exchangeratesbackend.controllers;
 
+import com.makarenko.exchangeratesbackend.config.security.jwt.AuthEntryPointJwt;
 import com.makarenko.exchangeratesbackend.exceptions.UserException;
 import com.makarenko.exchangeratesbackend.models.EnumRole;
 import com.makarenko.exchangeratesbackend.models.Role;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,6 +39,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 public class AuthController {
 
+  private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
   private final AuthenticationManager authenticationManager;
   private final UserService userService;
   private final RoleService roleService;
@@ -51,6 +56,7 @@ public class AuthController {
     this.roleService = roleService;
     this.encoder = encoder;
     this.jwtUtils = jwtUtils;
+    logger.debug("constructor AuthController created");
   }
 
   @PostMapping("/login")
@@ -66,6 +72,7 @@ public class AuthController {
         .map(GrantedAuthority::getAuthority)
         .collect(Collectors.toList());
 
+    logger.debug("method login() successful");
     return ResponseEntity.ok(new JwtResponse(
         jwtUtils.generateJwtToken(authentication),
         userDetails.getId(),
@@ -99,18 +106,23 @@ public class AuthController {
     user.setRoles(roles);
     userService.save(user);
 
+    logger.debug("method register() successful");
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
 
   private void checkRole(Set<String> strRoles, Set<Role> roles) {
-    strRoles.forEach(role -> {
-      if (role.equals("user")) {
-        Role userRole = roleService.findByName(EnumRole.ROLE_USER);
-        if (userRole == null) {
-          throw new UserException("Error: Role is not found.");
+    if (strRoles == null) {
+      Role userRole = roleService.findByName(EnumRole.ROLE_USER)
+          .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+      roles.add(userRole);
+    } else {
+      strRoles.forEach(role -> {
+        if (role.equals("user")) {
+          Role adminRole = roleService.findByName(EnumRole.ROLE_USER)
+              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+          roles.add(adminRole);
         }
-        roles.add(userRole);
-      }
-    });
+      });
+    }
   }
 }

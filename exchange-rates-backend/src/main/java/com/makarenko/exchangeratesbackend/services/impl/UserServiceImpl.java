@@ -45,6 +45,12 @@ public class UserServiceImpl implements UserService {
     if (user == null) {
       throw new UserException("User cannot null.");
     }
+
+    String username = user.getUsername();
+    if (userRepository.existsByUsername(username)) {
+      throw new UserException("User with username: " + username + " is exist");
+    }
+
     return userRepository.save(user);
   }
 

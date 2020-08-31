@@ -2,12 +2,10 @@ package com.makarenko.exchangeratesbackend.config.security.jwt;
 
 import com.makarenko.exchangeratesbackend.config.security.services.UserDetailsServiceImpl;
 import java.io.IOException;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

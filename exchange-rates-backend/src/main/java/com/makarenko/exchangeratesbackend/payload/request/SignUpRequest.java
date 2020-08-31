@@ -4,6 +4,7 @@ package com.makarenko.exchangeratesbackend.payload.request;
 import java.util.Set;
 
 import javax.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 

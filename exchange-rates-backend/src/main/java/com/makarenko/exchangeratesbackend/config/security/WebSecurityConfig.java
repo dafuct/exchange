@@ -25,6 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Import({AppConfiguration.class})
+@ComponentScan(basePackages = {"com.makarenko.exchangeratesbackend"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final UserDetailsServiceImpl userDetailsService;

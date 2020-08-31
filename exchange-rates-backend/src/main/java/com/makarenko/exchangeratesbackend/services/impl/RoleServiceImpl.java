@@ -5,6 +5,7 @@ import com.makarenko.exchangeratesbackend.models.EnumRole;
 import com.makarenko.exchangeratesbackend.models.Role;
 import com.makarenko.exchangeratesbackend.repository.RoleRepository;
 import com.makarenko.exchangeratesbackend.services.RoleService;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ public class RoleServiceImpl implements RoleService {
 
   @Transactional(readOnly = true)
   @Override
-  public Role findByName(EnumRole name) {
+  public Optional<Role> findByName(EnumRole name) {
     if (name == null) {
       throw new UserException("EnumRole cannot null.");
     }
