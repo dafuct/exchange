@@ -1,4 +1,4 @@
-Test Task: Website with which you can see the exchange rate.
+Website - exchange rate. Need Registration and Login
 
 Run the project, do the following steps in the terminal:
 Mysql serve need run and it created database.
